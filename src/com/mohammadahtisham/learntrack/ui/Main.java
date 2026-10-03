@@ -1,6 +1,7 @@
 package com.mohammadahtisham.learntrack.ui;
 
 import com.mohammadahtisham.learntrack.entity.*;
+import com.mohammadahtisham.learntrack.util.IdGenerator;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +23,12 @@ public class Main {
         System.out.println(p1.getDisplayName());
         System.out.println(p2.getDisplayName());
         System.out.println(p3.getDisplayName());
+
+        System.out.println(IdGenerator.getNextStudentId());
+        System.out.println(IdGenerator.getNextStudentId());
+        System.out.println(IdGenerator.getNextCourseId());
+        System.out.println(IdGenerator.getNextStudentId());
+        System.out.println(IdGenerator.getNextEnrollmentId());
 
     }
 }
