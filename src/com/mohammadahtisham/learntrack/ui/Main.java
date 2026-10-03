@@ -1,9 +1,6 @@
 package com.mohammadahtisham.learntrack.ui;
 
-import com.mohammadahtisham.learntrack.entity.Course;
-import com.mohammadahtisham.learntrack.entity.Person;
-import com.mohammadahtisham.learntrack.entity.Student;
-import com.mohammadahtisham.learntrack.entity.Trainer;
+import com.mohammadahtisham.learntrack.entity.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +13,11 @@ public class Main {
         System.out.println(c);
         c.setActive(false);
         System.out.println(c);
+
+        Enrollment e = new Enrollment(1, 2, 1);
+        System.out.println(e);
+        e.setStatus(EnrollmentStatus.COMPLETED);
+        System.out.println(e);
 
         System.out.println(p1.getDisplayName());
         System.out.println(p2.getDisplayName());
