@@ -15,4 +15,25 @@ public class Student extends Person {
         this.batch = batch;
         this.active = true;
     }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return super.getDisplayName() + " (" + batch + ")";
+    }
 }
