@@ -1,13 +1,18 @@
 package com.mohammadahtisham.learntrack.ui;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import com.mohammadahtisham.learntrack.entity.Person;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!");
+        Person p1 = new Person(1, "Ali", "Khan", "ali@test.com");
+        System.out.println(p1.getDisplayName());
 
+        Person p2 = new Person();
+        System.out.println(p2.getDisplayName());
+
+        p2.setFirstName("Sara");
+        p2.setLastName("Ahmed");
+        System.out.println(p2.getDisplayName());
 
     }
 }
