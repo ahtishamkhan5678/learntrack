@@ -39,6 +39,9 @@ public class Main {
                 case 3:
                     findStudent();
                     break;
+                case 4:
+                    updateStudent();
+                    break;
                 case 0:
                     System.out.println("Goodbye!");
                     running = false;
@@ -99,6 +102,33 @@ public class Main {
             int id = readInt("Student id: ");
             Student student = studentService.findStudentById(id);
             printStudent(student);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+        } catch (EntityNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void updateStudent() {
+        try {
+            int id = readInt("Student id: ");
+            studentService.findStudentById(id);
+            System.out.print("First name: ");
+            String firstName = scanner.nextLine();
+            System.out.print("Last name: ");
+            String lastName = scanner.nextLine();
+            System.out.print("Email: ");
+            String email = scanner.nextLine();
+            System.out.print("Batch: ");
+            String batch = scanner.nextLine();
+            InputValidator.requireNonEmpty(firstName, "First name");
+            InputValidator.requireNonEmpty(lastName, "Last name");
+            InputValidator.requireNonEmpty(batch, "Batch");
+            InputValidator.validateEmail(email);
+            studentService.updateStudent(id, firstName, lastName, email, batch);
+            System.out.println("Student updated.");
+        } catch (InvalidInputException e) {
+            System.out.println("Error: " + e.getMessage());
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid number.");
         } catch (EntityNotFoundException e) {
