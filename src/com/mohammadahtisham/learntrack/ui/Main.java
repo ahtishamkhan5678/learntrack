@@ -7,6 +7,7 @@ import com.mohammadahtisham.learntrack.service.EnrollmentService;
 import com.mohammadahtisham.learntrack.service.StudentService;
 import com.mohammadahtisham.learntrack.util.InputValidator;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -30,6 +31,9 @@ public class Main {
             switch (choice) {
                 case 1:
                     addStudent();
+                    break;
+                case 2:
+                    listStudents();
                     break;
                 case 0:
                     System.out.println("Goodbye!");
@@ -63,6 +67,17 @@ public class Main {
             System.out.println("Student added with id " + student.getId());
         } catch (InvalidInputException e) {
             System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void listStudents() {
+        List<Student> students = studentService.listStudents();
+        if (students.isEmpty()) {
+            System.out.println("No students found.");
+            return;
+        }
+        for (Student s : students) {
+            System.out.println(s.getId() + " | " + s.getDisplayName() + " | " + s.getEmail() + " | " + (s.isActive() ? "ACTIVE" : "INACTIVE"));
         }
     }
 
