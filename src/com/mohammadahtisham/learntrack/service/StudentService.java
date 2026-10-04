@@ -1,6 +1,7 @@
 package com.mohammadahtisham.learntrack.service;
 
 import com.mohammadahtisham.learntrack.entity.Student;
+import com.mohammadahtisham.learntrack.exception.EntityNotFoundException;
 import com.mohammadahtisham.learntrack.util.IdGenerator;
 
 import java.util.ArrayList;
@@ -21,5 +22,18 @@ public class StudentService {
         Student student = new Student(id, firstName, lastName, batch);
         students.add(student);
         return student;
+    }
+
+    public List<Student> listStudents() {
+        return students;
+    }
+
+    public Student findStudentById(int id) throws EntityNotFoundException {
+        for (Student s : students) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+        throw new EntityNotFoundException("Student with id " + id + " not found");
     }
 }
