@@ -2,6 +2,7 @@ package com.mohammadahtisham.learntrack.service;
 
 import com.mohammadahtisham.learntrack.entity.Course;
 import com.mohammadahtisham.learntrack.entity.Enrollment;
+import com.mohammadahtisham.learntrack.entity.EnrollmentStatus;
 import com.mohammadahtisham.learntrack.entity.Student;
 import com.mohammadahtisham.learntrack.exception.EntityNotFoundException;
 import com.mohammadahtisham.learntrack.exception.InvalidInputException;
@@ -46,6 +47,20 @@ public class EnrollmentService {
             }
         }
         return result;
+    }
+
+    public Enrollment findEnrollmentById(int id) throws EntityNotFoundException {
+        for (Enrollment e : enrollments) {
+            if (e.getId() == id) {
+                return e;
+            }
+        }
+        throw new EntityNotFoundException("Enrollment with id " + id + " not found");
+    }
+
+    public void updateEnrollmentStatus(int enrollmentId, EnrollmentStatus status) throws EntityNotFoundException {
+        Enrollment enrollmentById = findEnrollmentById(enrollmentId);
+        enrollmentById.setStatus(status);
     }
 }
 
