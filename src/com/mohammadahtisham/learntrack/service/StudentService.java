@@ -41,4 +41,12 @@ public class StudentService {
         Student studentById = findStudentById(id);
         studentById.setActive(false);
     }
+
+    public void updateStudent(int id, String firstName, String lastName, String email, String batch) throws EntityNotFoundException {
+        Student studentById = findStudentById(id);
+        studentById.setFirstName(firstName);
+        studentById.setLastName(lastName);
+        studentById.setEmail(email);
+        studentById.setBatch(batch);
+    }
 }
