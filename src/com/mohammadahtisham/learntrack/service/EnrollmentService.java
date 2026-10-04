@@ -37,5 +37,15 @@ public class EnrollmentService {
         enrollments.add(enrollment);
         return enrollment;
     }
+
+    public List<Enrollment> getEnrollmentsForStudent(int studentId) {
+        List<Enrollment> result = new ArrayList<>();
+        for (Enrollment e : enrollments) {
+            if (e.getStudentId() == studentId) {
+                result.add(e);
+            }
+        }
+        return result;
+    }
 }
 
