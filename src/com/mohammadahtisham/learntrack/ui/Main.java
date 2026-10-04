@@ -89,12 +89,14 @@ public class Main {
         System.out.println(s.getId() + " | " + s.getDisplayName() + " | " + s.getEmail() + " | " + (s.isActive() ? "ACTIVE" : "INACTIVE"));
     }
 
-    private static void findStudent() {
-        System.out.print("Student id: ");
-        String input = scanner.nextLine();
+    private static int readInt(String prompt) {
+        System.out.print(prompt);
+        return Integer.parseInt(scanner.nextLine());
+    }
 
+    private static void findStudent() {
         try {
-            int id = Integer.parseInt(input);
+            int id = readInt("Student id: ");
             Student student = studentService.findStudentById(id);
             printStudent(student);
         } catch (NumberFormatException e) {
