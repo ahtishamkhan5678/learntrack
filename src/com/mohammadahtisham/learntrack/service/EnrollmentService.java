@@ -33,6 +33,12 @@ public class EnrollmentService {
             throw new InvalidInputException("Student " + studentId + " is not active");
         }
 
+        for (Enrollment e : enrollments) {
+            if (e.getStudentId() == studentId && e.getCourseId() == courseId && e.getStatus() == EnrollmentStatus.ACTIVE) {
+                throw new InvalidInputException("Student " + studentId + " is already enrolled in course " + courseId);
+            }
+        }
+
         int id = IdGenerator.getNextEnrollmentId();
         Enrollment enrollment = new Enrollment(id, studentId, courseId);
         enrollments.add(enrollment);

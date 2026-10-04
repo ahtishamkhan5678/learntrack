@@ -18,4 +18,10 @@ public class InputValidator {
             throw new InvalidInputException("Invalid email: " + email);
         }
     }
+
+    public static void requirePositive(int value, String fieldName) throws InvalidInputException {
+        if (value <= 0) {
+            throw new InvalidInputException(fieldName + " must be greater than 0");
+        }
+    }
 }

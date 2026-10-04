@@ -6,8 +6,8 @@ public class Person {
     private String lastName;
     private String email;
 
-    // Default constructor
-    public Person() {
+    // Default constructor (package-private: only classes in the entity package can use it)
+    Person() {
 
     }
 
