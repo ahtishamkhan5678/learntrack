@@ -163,7 +163,7 @@ public class Main {
     private static void deactivateStudent() {
         try {
             int id = readInt("Student id: ");
-            studentService.deactivateStudent(id);
+            studentService.removeStudent(id);
             System.out.println("Student " + id + " deactivated.");
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid number.");

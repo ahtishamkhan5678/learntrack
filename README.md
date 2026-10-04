@@ -168,6 +168,7 @@ classDiagram
         +findStudentById(int) Student
         +updateStudent(int, String, String, String, String)
         +deactivateStudent(int)
+        +removeStudent(int)
     }
 
     class CourseService {

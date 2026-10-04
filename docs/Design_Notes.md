@@ -95,7 +95,8 @@ Because they extend `Exception` (checked), the compiler forces every caller to h
 Students are deactivated (`active = false`) rather than removed from the list. Enrollments store a
 `studentId`, so deleting a student would leave enrollments pointing to a student who no longer
 exists. Deactivating keeps the history and blocks new enrollments for that student.
-`deactivateStudent` is the "remove student" operation of this project.
+`StudentService.removeStudent(id)` is therefore a **soft delete**: it calls `deactivateStudent(id)`
+instead of removing the object from the list. Menu option 5 uses it.
 
 ### Overloading
 

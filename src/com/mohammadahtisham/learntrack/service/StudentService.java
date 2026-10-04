@@ -42,6 +42,11 @@ public class StudentService {
         studentById.setActive(false);
     }
 
+    // Soft delete: the student stays in the list (enrollments still refer to the id) but is marked inactive
+    public void removeStudent(int id) throws EntityNotFoundException {
+        deactivateStudent(id);
+    }
+
     public void updateStudent(int id, String firstName, String lastName, String email, String batch) throws EntityNotFoundException {
         Student studentById = findStudentById(id);
         studentById.setFirstName(firstName);
