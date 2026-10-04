@@ -1,18 +1,21 @@
 package com.mohammadahtisham.learntrack.ui;
 
+import com.mohammadahtisham.learntrack.entity.Student;
+import com.mohammadahtisham.learntrack.exception.InvalidInputException;
 import com.mohammadahtisham.learntrack.service.CourseService;
 import com.mohammadahtisham.learntrack.service.EnrollmentService;
 import com.mohammadahtisham.learntrack.service.StudentService;
+import com.mohammadahtisham.learntrack.util.InputValidator;
 
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        StudentService studentService = new StudentService();
-        CourseService courseService = new CourseService();
-        EnrollmentService enrollmentService = new EnrollmentService(studentService, courseService);
+    private static Scanner scanner = new Scanner(System.in);
+    private static StudentService studentService = new StudentService();
+    private static CourseService courseService = new CourseService();
+    private static EnrollmentService enrollmentService = new EnrollmentService(studentService, courseService);
 
+    public static void main(String[] args) {
         boolean running = true;
         while (running) {
             printMenu();
@@ -25,6 +28,9 @@ public class Main {
                 continue;
             }
             switch (choice) {
+                case 1:
+                    addStudent();
+                    break;
                 case 0:
                     System.out.println("Goodbye!");
                     running = false;
@@ -35,10 +41,35 @@ public class Main {
         }
     }
 
+    private static void addStudent() {
+        System.out.print("First name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.print("Last name: ");
+        String lastName = scanner.nextLine();
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Batch: ");
+        String batch = scanner.nextLine();
+
+        try {
+            InputValidator.requireNonEmpty(firstName, "First name");
+            InputValidator.requireNonEmpty(lastName, "Last name");
+            InputValidator.requireNonEmpty(batch, "Batch");
+            InputValidator.validateEmail(email);
+            Student student = studentService.addStudent(firstName, lastName, email, batch);
+            System.out.println("Student added with id " + student.getId());
+        } catch (InvalidInputException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
     private static void printMenu() {
         System.out.println("===== LearnTrack =====");
-        System.out.println("1. Add Student");
-        System.out.println("2. List Students");
+        System.out.println("1. Add student");
+        System.out.println("2. List students");
         System.out.println("3. Find student by id");
         System.out.println("4. Update student");
         System.out.println("5. Deactivate student");
@@ -49,6 +80,6 @@ public class Main {
         System.out.println("10. View enrollments for student");
         System.out.println("11. Update enrollment status");
         System.out.println("0. Exit");
-        System.out.print("Enter Choice : ");
+        System.out.print("Enter Choice: ");
     }
 }
