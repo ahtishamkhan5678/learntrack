@@ -42,6 +42,9 @@ public class Main {
                 case 4:
                     updateStudent();
                     break;
+                case 5:
+                    deactivateStudent();
+                    break;
                 case 0:
                     System.out.println("Goodbye!");
                     running = false;
@@ -129,6 +132,18 @@ public class Main {
             System.out.println("Student updated.");
         } catch (InvalidInputException e) {
             System.out.println("Error: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+        } catch (EntityNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private static void deactivateStudent() {
+        try {
+            int id = readInt("Student id: ");
+            studentService.deactivateStudent(id);
+            System.out.println("Student " + id + " deactivated.");
         } catch (NumberFormatException e) {
             System.out.println("Please enter a valid number.");
         } catch (EntityNotFoundException e) {
