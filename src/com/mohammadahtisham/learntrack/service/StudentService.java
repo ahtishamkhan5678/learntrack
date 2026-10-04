@@ -36,4 +36,9 @@ public class StudentService {
         }
         throw new EntityNotFoundException("Student with id " + id + " not found");
     }
+
+    public void deactivateStudent(int id) throws EntityNotFoundException {
+        Student studentById = findStudentById(id);
+        studentById.setActive(false);
+    }
 }
