@@ -1,6 +1,7 @@
 package com.mohammadahtisham.learntrack.ui;
 
 import com.mohammadahtisham.learntrack.entity.Student;
+import com.mohammadahtisham.learntrack.exception.EntityNotFoundException;
 import com.mohammadahtisham.learntrack.exception.InvalidInputException;
 import com.mohammadahtisham.learntrack.service.CourseService;
 import com.mohammadahtisham.learntrack.service.EnrollmentService;
@@ -34,6 +35,9 @@ public class Main {
                     break;
                 case 2:
                     listStudents();
+                    break;
+                case 3:
+                    findStudent();
                     break;
                 case 0:
                     System.out.println("Goodbye!");
@@ -77,7 +81,26 @@ public class Main {
             return;
         }
         for (Student s : students) {
-            System.out.println(s.getId() + " | " + s.getDisplayName() + " | " + s.getEmail() + " | " + (s.isActive() ? "ACTIVE" : "INACTIVE"));
+            printStudent(s);
+        }
+    }
+
+    private static void printStudent(Student s) {
+        System.out.println(s.getId() + " | " + s.getDisplayName() + " | " + s.getEmail() + " | " + (s.isActive() ? "ACTIVE" : "INACTIVE"));
+    }
+
+    private static void findStudent() {
+        System.out.print("Student id: ");
+        String input = scanner.nextLine();
+
+        try {
+            int id = Integer.parseInt(input);
+            Student student = studentService.findStudentById(id);
+            printStudent(student);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number.");
+        } catch (EntityNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
