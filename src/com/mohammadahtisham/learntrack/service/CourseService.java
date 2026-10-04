@@ -30,5 +30,13 @@ public class CourseService {
         throw new EntityNotFoundException("Course with id " + id + " not found");
     }
 
+    public void deactivateCourse(int id) throws EntityNotFoundException {
+        Course courseById = findCourseById(id);
+        courseById.setActive(false);
+    }
 
+    public void activateCourse(int id) throws EntityNotFoundException {
+        Course courseById = findCourseById(id);
+        courseById.setActive(true);
+    }
 }
